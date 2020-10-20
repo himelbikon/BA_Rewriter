@@ -1,26 +1,22 @@
-import random, time
-string = 'আমি অসময়, অবেলায়: কিভাবে  অধিবেশন ছেড়ে চলে যাই। আমি বেহুশ। অধিবেশন'
+import random
+sentences = 'আমি অসময়, অবেলায়: কিভাবে  অধিবেশন ছেড়ে চলে যাই। আমি বেহুশ। অধিবেশন'
 
-a = ['অকাল', 'অসময়', 'অবেলায়', 'অদিন', 'কুদিন', 'দুঃসময়']
-b = ['অচেতন', 'অজ্ঞান', 'আসাড়', 'জ্ঞানশূন্য', 'জ্ঞানহীন', 'বেহুশ']
-c = ['অধিবেশন', 'সভা', 'সমিতি', 'সমাবেশ', 'মিটিং']
-extra = ['।', ',', ':', ';']
-word_lists = [a, b, c]
+def converter(string):
+	a = ['অকাল', 'অসময়', 'অবেলায়', 'অদিন', 'কুদিন', 'দুঃসময়']
+	b = ['অচেতন', 'অজ্ঞান', 'আসাড়', 'জ্ঞানশূন্য', 'জ্ঞানহীন', 'বেহুশ']
+	c = ['অধিবেশন', 'সভা', 'সমিতি', 'সমাবেশ', 'মিটিং']
+	extra = ['।', ',', ':', ';']
+	lists = [a, b, c]
 
-def converter(word, list):
-	global string
-	if word in list:
-		string = string.replace(word, random.choice(list))
-
-def main(str):
-	for x in str.split('।'):
+	for x in string.split('।'):
 		for y in x.strip().split():
 			for z in extra:
 				y = y.replace(z, '')
-			for w in word_lists:
-				converter(y, w)
+			for list in lists:
+				if y in list:
+					string = string.replace(y, random.choice(list))
+	return string
 
-while True:
-	main(string)
-	print(string)
-	time.sleep(2)
+
+sentences = converter(sentences)
+print(sentences)
